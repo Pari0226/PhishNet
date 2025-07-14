@@ -1,7 +1,7 @@
 from flask import Flask, request, render_template, redirect, url_for, session
 import numpy as np
 import pickle
-from feature import FeatureExtraction
+from backend.feature import FeatureExtraction
 import warnings
 
 warnings.filterwarnings('ignore')
