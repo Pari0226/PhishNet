@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PhishNet - Cyber Awareness</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- AOS Library -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+  <!-- Orbitron Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Orbitron', sans-serif;
+      background: linear-gradient(180deg, #0D1B2A, #1B3C53);
+      background-size: 200% 200%;
+      animation: pulseBG 20s ease infinite;
+    }
+
+    @keyframes pulseBG {
+      0%, 100% { background-position: 0% 0%; }
+      50% { background-position: 100% 100%; }
+    }
+  </style>
+</head>
+
+<body class="text-white px-6 pt-12 pb-20">
+
+  <!-- Header -->
+  <header class="text-center mb-12">
+    <h1 class="text-5xl font-extrabold text-[#F9F3EF]" data-aos="fade-down">🛡️ Cyber Awareness</h1>
+    <p class="mt-4 text-lg text-[#D2C1B6]" data-aos="fade-up" data-aos-delay="200">
+      Stay informed. Stay protected. Your first defense against phishing is knowledge.
+    </p>
+  </header>
+
+  <!-- Tips Section -->
+  <section class="max-w-4xl mx-auto space-y-10">
+
+    <div class="bg-[#1B3C53] border-l-4 border-[#D2C1B6] p-6 rounded-lg shadow-xl" data-aos="fade-up">
+      <h2 class="text-2xl font-bold mb-2 text-[#F9F3EF]">🔗 Don’t click suspicious links</h2>
+      <p class="text-[#D2C1B6]">Avoid clicking on links from unknown emails or messages. Always verify the sender before proceeding.</p>
+    </div>
+
+    <div class="bg-[#1B3C53] border-l-4 border-[#D2C1B6] p-6 rounded-lg shadow-xl" data-aos="fade-up" data-aos-delay="100">
+      <h2 class="text-2xl font-bold mb-2 text-[#F9F3EF]">🔒 Look for HTTPS</h2>
+      <p class="text-[#D2C1B6]">Ensure websites use secure protocols. Always check if the URL begins with “https://” and shows a lock icon.</p>
+    </div>
+
+    <div class="bg-[#1B3C53] border-l-4 border-[#D2C1B6] p-6 rounded-lg shadow-xl" data-aos="fade-up" data-aos-delay="200">
+      <h2 class="text-2xl font-bold mb-2 text-[#F9F3EF]">👀 Be cautious of urgency</h2>
+      <p class="text-[#D2C1B6]">Phishing messages often create panic — e.g., “Your account will be closed!” Take a moment to evaluate before reacting.</p>
+    </div>
+
+    <div class="bg-[#1B3C53] border-l-4 border-[#D2C1B6] p-6 rounded-lg shadow-xl" data-aos="fade-up" data-aos-delay="300">
+      <h2 class="text-2xl font-bold mb-2 text-[#F9F3EF]">🧠 Think before you act</h2>
+      <p class="text-[#D2C1B6]">If something feels off, it probably is. Don’t share OTPs, passwords, or personal details without verifying the platform.</p>
+    </div>
+
+    <div class="bg-[#1B3C53] border-l-4 border-[#D2C1B6] p-6 rounded-lg shadow-xl" data-aos="fade-up" data-aos-delay="400">
+      <h2 class="text-2xl font-bold mb-2 text-[#F9F3EF]">📞 Contact official support</h2>
+      <p class="text-[#D2C1B6]">When in doubt, contact the company or service through their verified website or helpline.</p>
+    </div>
+  </section>
+
+  <!-- Back Button -->
+  <div class="text-center mt-16" data-aos="fade-in" data-aos-delay="500">
+    <a href="/" class="bg-white text-[#1B3C53] px-6 py-3 rounded-lg font-semibold shadow-md hover:bg-[#D2C1B6] transition duration-300">
+      🔙 Back to Home
+    </a>
+  </div>
+
+  <script>
+    AOS.init();
+  </script>
+
+</body>
+</html>

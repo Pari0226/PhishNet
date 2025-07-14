@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PhishNet - Contact</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- AOS Library -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+  <!-- Orbitron Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Orbitron', sans-serif;
+      background: linear-gradient(180deg, #0D1B2A, #1B3C53);
+      background-size: 200% 200%;
+      animation: pulseBG 20s ease infinite;
+    }
+
+    @keyframes pulseBG {
+      0%, 100% { background-position: 0% 0%; }
+      50% { background-position: 100% 100%; }
+    }
+  </style>
+</head>
+
+<body class="text-white px-6 py-20">
+
+  <!-- Header -->
+  <header class="text-center mb-12">
+    <h1 class="text-5xl font-extrabold text-[#F9F3EF]" data-aos="fade-down">📬 Contact</h1>
+    <p class="mt-4 text-lg text-[#D2C1B6]" data-aos="fade-up" data-aos-delay="200">
+      Have questions or want to collaborate? Reach out!
+    </p>
+  </header>
+
+  <!-- Contact Info -->
+  <section class="max-w-2xl mx-auto space-y-8">
+
+    <!-- GitHub -->
+    <div class="bg-[#1B3C53] border-l-4 border-[#D2C1B6] p-6 rounded-lg shadow-xl" data-aos="fade-up">
+      <h2 class="text-xl font-semibold text-[#F9F3EF]">💻 GitHub</h2>
+      <p class="text-[#D2C1B6] break-words">
+        <a href="https://github.com/Pari0226" target="_blank" class="underline hover:text-[#F9F3EF]">
+          github.com/Pari0226
+        </a>
+      </p>
+    </div>
+
+    <!-- LinkedIn -->
+    <div class="bg-[#1B3C53] border-l-4 border-[#D2C1B6] p-6 rounded-lg shadow-xl" data-aos="fade-up" data-aos-delay="100">
+      <h2 class="text-xl font-semibold text-[#F9F3EF]">🔗 LinkedIn</h2>
+      <p class="text-[#D2C1B6] break-words">
+        <a href="https://www.linkedin.com/in/pari-singh-2b29aa255/" target="_blank" class="underline hover:text-[#F9F3EF]">
+          lhttps://www.linkedin.com/in/pari-singh-2b29aa255/
+        </a>
+      </p>
+    </div>
+
+    <!-- Email -->
+    <div class="bg-[#1B3C53] border-l-4 border-[#D2C1B6] p-6 rounded-lg shadow-xl" data-aos="fade-up" data-aos-delay="200">
+      <h2 class="text-xl font-semibold text-[#F9F3EF]">✉️ Email</h2>
+      <p class="text-[#D2C1B6]">singhpari94533@gmail.com</p>
+    </div>
+
+    <!-- Contact Form (Placeholder / Disabled) -->
+    <div class="bg-[#1B3C53] p-6 rounded-lg shadow-xl" data-aos="fade-up" data-aos-delay="300">
+      <h2 class="text-xl font-semibold text-[#F9F3EF] mb-4">Send a Message (coming soon)</h2>
+      <form>
+        <input type="text" placeholder="Your Name" class="w-full mb-4 px-4 py-3 rounded-md text-black" disabled />
+        <input type="email" placeholder="Your Email" class="w-full mb-4 px-4 py-3 rounded-md text-black" disabled />
+        <textarea rows="4" placeholder="Your Message" class="w-full mb-4 px-4 py-3 rounded-md text-black" disabled></textarea>
+        <button class="bg-gray-500 text-white py-3 px-6 rounded-md cursor-not-allowed" disabled>
+          Send (Disabled)
+        </button>
+      </form>
+    </div>
+
+  </section>
+
+  <!-- Back Button -->
+  <div class="text-center mt-16" data-aos="fade-in" data-aos-delay="500">
+    <a href="/" class="bg-white text-[#1B3C53] px-6 py-3 rounded-lg font-semibold shadow-md hover:bg-[#D2C1B6] transition duration-300">
+      🔙 Back to Home
+    </a>
+  </div>
+
+  <script>
+    AOS.init();
+  </script>
+
+</body>
+</html>
