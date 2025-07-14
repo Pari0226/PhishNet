@@ -3,14 +3,17 @@ import numpy as np
 import pickle
 from backend.feature import FeatureExtraction
 import warnings
-
+import os
 warnings.filterwarnings('ignore')
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key_here'  # Replace with a secure key in production
 
 # Load ML model
-with open("../ml_model/model.pkl", "rb") as file:
+BASE_DIR   = os.path.dirname(__file__)            # …/backend
+MODEL_PATH = os.path.join(BASE_DIR, '..', 'ml_model', 'model.pkl')
+
+with open(MODEL_PATH, "rb") as file:
     gbc = pickle.load(file)
 
 # Utility to ensure URL has a scheme
