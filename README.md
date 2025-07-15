@@ -23,13 +23,11 @@ PhishNet is an AI-powered phishing detection web app that identifies malicious U
 | 🧠 ML Model      | Gradient Boosting Classifier trained on phishing.csv dataset               |
 | ⚙️ Feature Logic | `feature.py` handles all feature extraction logic cleanly                  |
 | ⚡ API Endpoints | `/predict-url` for real-time predictions (returns JSON result)             |
-| 🖥️ Web Interface | Flask app with **Tailwind CSS** UI with responsive layout
-|
-| 🧾 Awareness      | Static pages with phishing education and safety tips                      |
-| 🛡️ Stateless     | No database used – all predictions processed in-memory                    |
+| 🖥️ Web Interface | Flask + **Tailwind CSS** UI with responsive layout                         |
+| 📚 Awareness      | Static pages on phishing awareness & online safety                        |
+| 🛡️ Stateless     | No database – real-time in-memory prediction                              |
 | 🚀 Render Ready  | Docker-free, 1-click deployment on Render with minimal config              |
 
----
 
 ## 📁 Project Structure
 PhishNet/
