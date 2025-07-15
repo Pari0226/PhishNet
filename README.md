@@ -17,7 +17,7 @@ PhishNet is a lightweight and fast phishing detection tool that uses machine lea
 
 ## 📸 Screenshot
 
-![UI Screenshot](docs/screenshot.png) <!-- Rename or replace this file if needed -->
+![UI Screenshot](docs/phishnett.png) <!-- Rename or replace this file if needed -->
 
 ---
 
