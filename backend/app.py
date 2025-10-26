@@ -21,8 +21,14 @@ db = SQLAlchemy(app)
 BASE_DIR   = os.path.dirname(__file__)            # …/backend
 MODEL_PATH = os.path.join(BASE_DIR, '..', 'ml_model', 'model.pkl')
 
-with open(MODEL_PATH, "rb") as file:
-    gbc = pickle.load(file)
+# Make model loading safe - allow app to start even if model isn't available
+gbc = None
+try:
+    with open(MODEL_PATH, "rb") as file:
+        gbc = pickle.load(file)
+except Exception as e:
+    print(f"Warning: Model failed to load from {MODEL_PATH} - {e}")
+    print("App will start but prediction endpoint will return error 503 until model is fixed")
 
 # Ensure database tables are created at startup. If you have models defined
 # in other modules, import them before calling create_all so SQLAlchemy knows
