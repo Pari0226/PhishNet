@@ -19,7 +19,11 @@ db = SQLAlchemy(app)
 
 # Load ML model
 BASE_DIR   = os.path.dirname(__file__)            # …/backend
-MODEL_PATH = os.path.join(BASE_DIR, '..', 'ml_model', 'model.pkl')
+# For Render deployment the model is placed at the repository root. Use the
+# absolute path Render uses for the project. This ensures the app loads the
+# model saved at /opt/render/project/src/model.pkl (repo root), not under
+# backend/../ml_model.
+MODEL_PATH = '/opt/render/project/src/model.pkl'
 
 # Make model loading safe - allow app to start even if model isn't available
 gbc = None
