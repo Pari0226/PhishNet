@@ -4,10 +4,18 @@ import pickle
 from feature import FeatureExtraction
 import warnings
 import os
+from flask_sqlalchemy import SQLAlchemy
 warnings.filterwarnings('ignore')
 
 app = Flask(__name__)
-app.secret_key = 'your_secret_key_here'  # Replace with a secure key in production
+# Use explicit SQLite database for Render deployment (file-based DB in app root)
+# If DATABASE_URL env var is provided, it will override this value.
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///phishnet.db')
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.secret_key = os.environ.get('SECRET_KEY', 'your_secret_key_here')
+
+# Initialize SQLAlchemy (keeps DB models & functionality unchanged)
+db = SQLAlchemy(app)
 
 # Load ML model
 BASE_DIR   = os.path.dirname(__file__)            # …/backend
@@ -15,6 +23,17 @@ MODEL_PATH = os.path.join(BASE_DIR, '..', 'ml_model', 'model.pkl')
 
 with open(MODEL_PATH, "rb") as file:
     gbc = pickle.load(file)
+
+# Ensure database tables are created at startup. If you have models defined
+# in other modules, import them before calling create_all so SQLAlchemy knows
+# about them. Example: from .models import *
+with app.app_context():
+    try:
+        # create_all will create any missing tables for declared models
+        db.create_all()
+    except Exception:
+        # If DB initialization fails, continue but log the error in real usage
+        pass
 
 # Utility to ensure URL has a scheme
 def validate_url(input_url):
