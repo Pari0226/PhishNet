@@ -62,9 +62,8 @@ def main():
     clf = GradientBoostingClassifier(n_estimators=50, random_state=42)
     clf.fit(X, y)
 
-    # Save model to workspace ml_model/model.pkl
-    out_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'ml_model'))
-    os.makedirs(out_dir, exist_ok=True)
+    # Save model to project root as model.pkl
+    out_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
     out_path = os.path.join(out_dir, 'model.pkl')
     joblib.dump(clf, out_path)
 

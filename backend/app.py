@@ -1,6 +1,6 @@
 from flask import Flask, request, render_template, redirect, url_for, session
 import numpy as np
-import pickle
+import joblib
 from feature import FeatureExtraction
 import warnings
 import os
@@ -23,16 +23,54 @@ BASE_DIR   = os.path.dirname(__file__)            # …/backend
 # absolute path Render uses for the project. This ensures the app loads the
 # model saved at /opt/render/project/src/model.pkl (repo root), not under
 # backend/../ml_model.
-MODEL_PATH = '/opt/render/project/src/model.pkl'
+def find_model_path():
+    """Return the first existing model path.
+
+    Order of preference:
+      1. ./model.pkl (when running from repo root)
+      2. ../model.pkl  (when running from backend/)
+      3. /opt/render/project/src/model.pkl (Render)
+    """
+    # Try a few likely locations. Order matters: try relative paths first, then Render path.
+    candidates = [
+        os.path.abspath(os.path.join(BASE_DIR, '..', 'model.pkl')),         # ../model.pkl (up one level to project root)
+        os.path.abspath(os.path.join(BASE_DIR, 'model.pkl')),               # backend/model.pkl (current directory)
+        os.path.abspath(os.path.join(BASE_DIR, '.', 'model.pkl')),          # backend/./model.pkl (explicit current)
+        '/opt/render/project/src/model.pkl',                                 # Render absolute path
+    ]
+    for p in candidates:
+        try:
+            if os.path.exists(p):
+                return p
+        except Exception:
+            continue
+    return None
+
+
+# Determine model path and load if available. App will continue to run even if
+# the model is missing; the prediction endpoint should handle that case.
+MODEL_PATH = find_model_path()
 
 # Make model loading safe - allow app to start even if model isn't available
 gbc = None
-try:
-    with open(MODEL_PATH, "rb") as file:
-        gbc = pickle.load(file)
-except Exception as e:
-    print(f"Warning: Model failed to load from {MODEL_PATH} - {e}")
-    print("App will start but prediction endpoint will return error 503 until model is fixed")
+if MODEL_PATH is None:
+    print("ERROR: No model file found. Tried locations:")
+    for p in [
+        os.path.abspath(os.path.join(BASE_DIR, '..', 'model.pkl')),         # project root
+        os.path.abspath(os.path.join(BASE_DIR, 'model.pkl')),               # backend folder
+        os.path.abspath(os.path.join(BASE_DIR, '.', 'model.pkl')),          # explicit ./
+        '/opt/render/project/src/model.pkl',                                 # Render path
+    ]:
+        print("  - ", p)
+    print("Please place model.pkl at the project root or the Render path.")
+else:
+    print(f"Loading model from: {MODEL_PATH}")
+    try:
+        gbc = joblib.load(MODEL_PATH)
+        print("Model loaded successfully.")
+    except Exception as e:
+        print(f"ERROR: Model failed to load from {MODEL_PATH} - {e}")
+        print("App will start but prediction endpoint will return an error until model is fixed.")
 
 # Ensure database tables are created at startup. If you have models defined
 # in other modules, import them before calling create_all so SQLAlchemy knows
@@ -57,6 +95,12 @@ def index():
         raw_url = request.form.get("url")
         url = validate_url(raw_url)
 
+        # If model isn't loaded, return a friendly error instead of crashing
+        if gbc is None:
+            error_msg = "Model is not available. Please try again later."
+            return render_template("index.html", xx=None, url=url, error=error_msg), 503
+
+        # Extract features and predict
         obj = FeatureExtraction(url)
         x = np.array(obj.getFeaturesList()).reshape(1, 30)
 
