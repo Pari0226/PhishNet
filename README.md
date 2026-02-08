@@ -4,6 +4,10 @@ PhishNet is a lightweight and fast phishing detection tool that uses machine lea
 
 ---
 
+### 🌐 Live Demo  
+Want to test PhishNet in real time?  
+▶️ https://phishnet-app.onrender.com/
+
 ## 🚀 Features
 
 - 🔗 URL-based phishing detection using handcrafted lexical features
